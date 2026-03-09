@@ -107,8 +107,10 @@ function createServer() {
         try {
           fs.writeFileSync(dataPath, JSON.stringify(expense, null, 2));
 
-          // Return sucsess response with JSON
-          sendResponse(res, 200, 'application/json', expense);
+          // Return HTML page with well-formatted JSON
+          const html = `<pre>${JSON.stringify(expense, null, 2)}</pre>`;
+
+          sendResponse(res, 200, 'text/html', html);
         } catch (error) {
           sendResponse(res, 500, 'application/json', {
             error: 'Failed to save expense',

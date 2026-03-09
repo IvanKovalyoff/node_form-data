@@ -46,13 +46,13 @@
           body: JSON.stringify(formData),
         });
 
-        const data = await response.json();
+        const data = await response.text();
 
         if (response.ok) {
           resultDiv.innerHTML = `
             <div class="success">
               <h2>Expense Saved Successfully!</h2>
-              <pre>${JSON.stringify(data, null, 2)}</pre>
+              ${data}
             </div>
           `;
           form.reset();
@@ -60,7 +60,7 @@
           resultDiv.innerHTML = `
             <div class="error">
               <h2>Error</h2>
-              <pre>${JSON.stringify(data, null, 2)}</pre>
+              <p>${data}</p>
             </div>
           `;
         }
